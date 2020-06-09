@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_weight="1"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="كم وزن نفايتك؟"
+        android:textColor="@color/colorSecondry"
+        android:textStyle="bold" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="129dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/txt_w"
+        app:layout_constraintStart_toEndOf="@+id/txt_w">
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="106dp"
+            android:layout_height="97dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/balancenew" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="52dp"
+            android:layout_height="75dp"
+            android:layout_marginEnd="40dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageButton
+                android:id="@+id/add_w"
+                android:layout_width="38dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_add_circle_black_24dp"
+                tools:layout_editor_absoluteX="319dp"
+                tools:layout_editor_absoluteY="64dp" />
+
+            <ImageButton
+                android:id="@+id/sub_w"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                app:srcCompat="@drawable/ic_do_not_disturb_on_black_24dp"
+                tools:layout_editor_absoluteX="319dp"
+                tools:layout_editor_absoluteY="64dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="74dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="56dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout5"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txt_w"
+                android:layout_width="36dp"
+                android:layout_height="18dp"
+                android:background="@drawable/txtview_ph"
+                android:gravity="center"
+                android:textColor="@color/colorPrimaryDark"
+                tools:layout_conversion_absoluteHeight="44dp"
+                tools:layout_conversion_absoluteWidth="181dp" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="27dp"
+                android:layout_height="18dp"
+                android:text="Kg"
+                android:textColor="@color/colorPrimaryDark" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

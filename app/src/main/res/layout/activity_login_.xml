@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_google_signin_btn_text_dark_default"
+    tools:context=".Login_Activity">
+
+    <ImageView
+        android:id="@+id/img_pro"
+        android:layout_width="113dp"
+        android:layout_height="178dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.272"
+        app:srcCompat="@drawable/activate_ph" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="350dp"
+        android:layout_height="268dp"
+        android:layout_marginBottom="36dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/lin1"
+            android:layout_width="323dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_username"
+                android:layout_width="287dp"
+                android:layout_height="41dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/txtview_ph"
+                android:drawableLeft="@drawable/ic_person"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="اسم المستخدم"
+                android:inputType="textPersonName"
+                android:paddingLeft="5dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lin2"
+            android:layout_width="323dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/txt_ph_num"
+                android:layout_width="288dp"
+                android:layout_height="41dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_weight="1"
+                android:background="@drawable/txtview_ph"
+                android:drawableLeft="@drawable/ic_phone_android"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="رقم الهاتف"
+                android:inputType="number|phone"
+                android:paddingLeft="5dp"
+                android:textColor="@color/colorPrimary"
+                android:textColorHint="@color/colorPrimary" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@android:style/Widget.Material.Light.Button.Borderless"
+            android:layout_width="254dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn_style"
+            android:text="ارسل رمز التأكيد"
+            android:textColor="@color/common_google_signin_btn_text_dark_default" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
