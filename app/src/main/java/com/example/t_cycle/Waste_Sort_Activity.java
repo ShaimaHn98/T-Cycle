@@ -43,7 +43,7 @@ Button btn_iron,btn_blastic,btn_pap,btn_alm,btn_carton,btn_nuhas,btn_confirm;
                 dialog_weight=new dialog_weight();
                 dialog_weight.show(getSupportFragmentManager(),null);
                 order_Type_iron ="حديد";
-                com.example.t_cycle.dialoge_confirmation.order_type_i=String.valueOf(order_Type_iron);
+                com.example.t_cycle.dialoge_confirmation.order_type_iron=String.valueOf(order_Type_iron);
                 t_input=0;
                 com.example.t_cycle.dialog_weight.type_input=t_input;
             }
@@ -54,7 +54,7 @@ Button btn_iron,btn_blastic,btn_pap,btn_alm,btn_carton,btn_nuhas,btn_confirm;
                 dialog_weight=new dialog_weight();
                 dialog_weight.show(getSupportFragmentManager(),null);
                 order_Type_plas="بلاستيك";
-                com.example.t_cycle.dialoge_confirmation.order_type_p=String.valueOf(order_Type_plas);
+                com.example.t_cycle.dialoge_confirmation.order_type_plastic=String.valueOf(order_Type_plas);
                 t_input=1;
                 com.example.t_cycle.dialog_weight.type_input=t_input;
 
@@ -69,7 +69,7 @@ Button btn_iron,btn_blastic,btn_pap,btn_alm,btn_carton,btn_nuhas,btn_confirm;
         weigh_alm= com.example.t_cycle.dialog_weight.weight;
 
         order_Type_alm="أمنيوم";
-        com.example.t_cycle.dialoge_confirmation.order_type_m=String.valueOf(order_Type_alm);
+        com.example.t_cycle.dialoge_confirmation.order_type_aluminium=String.valueOf(order_Type_alm);
         com.example.t_cycle.dialoge_confirmation.weight_tpye=weigh_alm;
         t_input=2;
         com.example.t_cycle.dialog_weight.type_input=t_input;
@@ -82,7 +82,7 @@ Button btn_iron,btn_blastic,btn_pap,btn_alm,btn_carton,btn_nuhas,btn_confirm;
         dialog_weight=new dialog_weight();
         dialog_weight.show(getSupportFragmentManager(),null);
         order_Type_paper="ورق";
-        com.example.t_cycle.dialoge_confirmation.order_type_pap=String.valueOf(order_Type_paper);
+        com.example.t_cycle.dialoge_confirmation.order_type_paper=String.valueOf(order_Type_paper);
         t_input=3;
         com.example.t_cycle.dialog_weight.type_input=t_input;
     }
@@ -93,7 +93,7 @@ Button btn_iron,btn_blastic,btn_pap,btn_alm,btn_carton,btn_nuhas,btn_confirm;
                 dialog_weight=new dialog_weight();
                 dialog_weight.show(getSupportFragmentManager(),null);
                 order_Type_cart="كرتون";
-                com.example.t_cycle.dialoge_confirmation.order_type_c=String.valueOf(order_Type_cart);
+                com.example.t_cycle.dialoge_confirmation.order_type_carton=String.valueOf(order_Type_cart);
                 t_input=4;
                 com.example.t_cycle.dialog_weight.type_input=t_input;
             }
@@ -104,7 +104,7 @@ Button btn_iron,btn_blastic,btn_pap,btn_alm,btn_carton,btn_nuhas,btn_confirm;
         dialog_weight=new dialog_weight();
         dialog_weight.show(getSupportFragmentManager(),null);
         order_Type_nuhas="نحاس";
-        com.example.t_cycle.dialoge_confirmation.order_type_n=String.valueOf(order_Type_nuhas);
+        com.example.t_cycle.dialoge_confirmation.order_type_copper=String.valueOf(order_Type_nuhas);
         t_input=5;
         com.example.t_cycle.dialog_weight.type_input=t_input;
     }

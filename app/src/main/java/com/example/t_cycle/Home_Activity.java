@@ -65,7 +65,7 @@ final String uid=mAuth.getCurrentUser().getUid();
             }
         });
        final CircleImageView imageVi=(CircleImageView) had.findViewById(R.id.img_profile_update);
-        firestore.collection("User_Info").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+       firestore.collection("User_Info").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 String img_pr=task.getResult().getString("img_profile");
@@ -78,8 +78,10 @@ final String uid=mAuth.getCurrentUser().getUid();
         imageVi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-Intent intent=new Intent(Home_Activity.this,Profile_Activity.class);
-startActivity(intent);
+
+                Intent intent=new Intent(Home_Activity.this,Profile_Activity.class);
+
+                startActivity(intent);
             }
 
 

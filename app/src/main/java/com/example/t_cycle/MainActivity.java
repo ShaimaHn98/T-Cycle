@@ -24,37 +24,37 @@ FirebaseFirestore firestore;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mAuth=FirebaseAuth.getInstance();
-        firestore=FirebaseFirestore.getInstance();
-        if (mAuth.getCurrentUser()==null){
-        Intent intent=new Intent(MainActivity.this,Login_Activity.class);
-        startActivity(intent);
-        finish();
-        }
-        else
-            { Intent intent=new Intent(MainActivity.this, Home_Activity.class);
+        mAuth = FirebaseAuth.getInstance();
+        firestore = FirebaseFirestore.getInstance();
+        if (mAuth.getCurrentUser() == null) {
+            Intent intent = new Intent(MainActivity.this, Login_Activity.class);
             startActivity(intent);
+            finish();
+        }
+        else {
+            Intent intent = new Intent(MainActivity.this, Home_Activity.class);
+            startActivity(intent);
+            FirebaseInstanceId.getInstance().getInstanceId()
+                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                            if (!task.isSuccessful()) {
+                                Log.d("ERRORS", "getInstanceId failed", task.getException());
+                                return;
+                            }
+
+
+                            // Get new Instance ID token
+                            String token = task.getResult().getToken();
+
+                            // Log and toast
+                            HashMap<String, String> tokenmap = new HashMap<>();
+                            tokenmap.put("tokenid", token);
+                            firestore.collection("Token").document(mAuth.getCurrentUser().getUid()).set(tokenmap);
+                            Log.d("TokenID",String.valueOf(token));
+                        }
+                    });
 
         }
-        FirebaseInstanceId.getInstance().getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if (!task.isSuccessful()) {
-                            Log.d("ERRORS", "getInstanceId failed", task.getException());
-                            return;
-                        }
-
-
-                        // Get new Instance ID token
-                        String token = task.getResult().getToken();
-
-                        // Log and toast
-                        HashMap<String, String> tokenmap = new HashMap<>();
-                        tokenmap.put("Token", token);
-                        firestore.collection("Token").document(mAuth.getCurrentUser().getUid()).set(tokenmap);
-Log.d("TokenID",String.valueOf(token));
-                    }
-                });
     }
 }

@@ -24,26 +24,21 @@ public class MyMssgServices extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-
-
-        shownotification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
-        Log.d("Show notify",String.valueOf(remoteMessage.getNotification().getTitle()));
+        Log.d("remote_message",String.valueOf(remoteMessage.getNotification()));
+     if (remoteMessage.getNotification()!=null){
+        show_notification(remoteMessage.getNotification().getTitle(), remoteMessage.getNotification().getBody());
+        Log.d("Show notify",String.valueOf(remoteMessage.getNotification().getBody()));}
     }
 
 
-    public void shownotification(String Title, String Message) {
-
-
-        Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+    public void show_notification(String Title, String Message) {
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "MyNotification")
                 .setContentTitle(Title)
                 .setContentText(Message)
                 .setSmallIcon(R.drawable.prize_re)
-                .setSound(alarmSound)
                 .setAutoCancel(true);
-//builder.addAction(Toast.makeText(getApplicationContext(),"Hello",Toast.LENGTH_LONG).show());
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(this);
-        managerCompat.notify(99999, builder.build());
+        managerCompat.notify(9999, builder.build());
     }
 }

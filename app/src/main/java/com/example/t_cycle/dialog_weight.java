@@ -76,27 +76,27 @@ static int type_input;
                 txt_w.setText(String.valueOf(cont));
 
                 if (type_input==0)
-                { dialoge_confirmation.inp_type_ir=String.valueOf(txt_w.getText().toString());
+                { dialoge_confirmation.inp_type_iron=String.valueOf(txt_w.getText().toString());
                     //weight=cont;
 
                 }else if (type_input==1)
-                {dialoge_confirmation.inp_type_pl=String.valueOf(cont);
+                {dialoge_confirmation.inp_type_plastic=String.valueOf(cont);
                     weight=cont;
 
                 }else if (type_input==2){
-                    dialoge_confirmation.inp_type_alm=String.valueOf(cont);
+                    dialoge_confirmation.inp_type_aluminium=String.valueOf(cont);
                     //  weight=cont;
                 }
               else if (type_input==3){
-                    dialoge_confirmation.inp_type_pa=String.valueOf(cont);
+                    dialoge_confirmation.inp_type_paper=String.valueOf(cont);
                     //  weight=cont;
                 }
                 else if (type_input==4){
-                    dialoge_confirmation.inp_type_cart=String.valueOf(cont);
+                    dialoge_confirmation.inp_type_carton=String.valueOf(cont);
                     //  weight=cont;
                 }
                 else if (type_input==5){
-                    dialoge_confirmation.inp_type_nuh=String.valueOf(cont);
+                    dialoge_confirmation.inp_type_copper=String.valueOf(cont);
                     //  weight=cont;
                 }
             }
@@ -114,26 +114,26 @@ static int type_input;
 
 }
                     if (type_input==0)
-                    { dialoge_confirmation.inp_type_ir=String.valueOf(txt_w.getText().toString())+"Kg";
+                    { dialoge_confirmation.inp_type_iron=String.valueOf(txt_w.getText().toString())+"Kg";
                         //weight=cont;
 
                     }else if (type_input==1)
-                    {dialoge_confirmation.inp_type_pl=cont+"Kg";
+                    {dialoge_confirmation.inp_type_plastic=cont+"Kg";
                         weight=cont;
 
                     }else if (type_input==2){
-                        dialoge_confirmation.inp_type_alm=cont+"Kg";
+                        dialoge_confirmation.inp_type_aluminium=cont+"Kg";
                         //  weight=cont;
                     }else if (type_input==3){
-                        dialoge_confirmation.inp_type_pa=cont+"Kg";
+                        dialoge_confirmation.inp_type_paper=cont+"Kg";
                         //  weight=cont;
                     }
                     else if (type_input==4){
-                        dialoge_confirmation.inp_type_cart=cont+"Kg";
+                        dialoge_confirmation.inp_type_carton=cont+"Kg";
                         //  weight=cont;
                     }
                     else if (type_input==5){
-                        dialoge_confirmation.inp_type_nuh=cont+"Kg";
+                        dialoge_confirmation.inp_type_copper=cont+"Kg";
                         //  weight=cont;
                     }
 

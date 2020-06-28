@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -52,7 +53,7 @@ Context context;
         viewOrderAdapter=new View_Order_Adapter(my_recyclingList);
         rec_order.setAdapter(viewOrderAdapter);
         rec_order.setLayoutManager(new LinearLayoutManager(getActivity()));
-        Query first_query=firestore.collection("My_Recycling").orderBy("Date",Query.Direction.DESCENDING);
+        Query first_query=firestore.collection("My_Recycling").orderBy("Date", Query.Direction.DESCENDING).whereEqualTo("UID",mAuth.getCurrentUser().getUid());
         first_query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -61,7 +62,7 @@ Context context;
                     for(DocumentChange documentChange :documentSnapshots.getDocumentChanges())
                     {
                         if (documentChange.getType() ==DocumentChange.Type.ADDED)
-                        {
+                       try {
                             My_Recycling my_recycling=documentChange.getDocument().toObject(My_Recycling.class);
                             my_recyclingList.add(my_recycling);
                             viewOrderAdapter.notifyDataSetChanged();
@@ -69,6 +70,10 @@ Context context;
 
 
 
+                        }
+                        catch (Exception e1)
+                        {
+                            Toast.makeText(getContext(),"Catch:"+e1.getMessage(),Toast.LENGTH_LONG).show();
                         }
                     }
 

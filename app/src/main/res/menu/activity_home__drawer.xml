@@ -21,5 +21,12 @@
             android:id="@+id/nav_store"
             android:icon="@drawable/ic_store_black_24dp"
             android:title="متجر T_Cycle"/>
+        <item
+            android:id="@+id/nav_wallet"
+            android:icon="@drawable/ic_credit_card_black_24dp"
+            android:title="المحفظة"/>
+        <item android:id="@+id/nav_log_out"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="خروج"/>
     </group>
 </menu>

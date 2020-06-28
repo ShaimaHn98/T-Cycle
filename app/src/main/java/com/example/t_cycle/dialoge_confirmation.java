@@ -40,11 +40,14 @@ import org.json.JSONObject;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.UUID;
 
 public class dialoge_confirmation extends DialogFragment {
+
+
     Button btn_conf_weight;
     TextView txt_conf_weight;
     static String lat, lon;
@@ -54,14 +57,15 @@ public class dialoge_confirmation extends DialogFragment {
     FirebaseAuth mAuth;
     FirebaseFirestore firestore;
     static int weight_tpye;
-    static String order_type_m, order_type_i, order_type_p, order_type_n, order_type_c, order_type_pap;
-    static String inp_type_alm, inp_type_ir, inp_type_pl, inp_type_pa, inp_type_nuh, inp_type_cart;
-    static double priceof_iron, price_of_alm, price_of_cart, price_of_nuh, price_of_plas, price_of_pap;
-    static double total_d;
-    TextView txt_loc;
-String UID,User_Order;
-Context context;
+    static String order_type_aluminium, order_type_iron, order_type_plastic, order_type_copper, order_type_carton, order_type_paper;
+    static String inp_type_aluminium, inp_type_iron, inp_type_plastic, inp_type_paper, inp_type_copper, inp_type_carton;
+    static String price_of_iron, price_of_aluminium, price_of_carton, price_of_copper, price_of_plastic, price_of_paper;
+   static Double total_price;
 
+    TextView txt_loc;
+   String UID,User_Order;
+   Context context;
+    DecimalFormat  s= new DecimalFormat();
 
 
     @NonNull
@@ -92,7 +96,7 @@ Context context;
         lon = intent.getStringExtra("longitude");
         final Intent[] total = {getActivity().getIntent()};
         total[0].getStringExtra("total_waste");
-        Log.d("order_Type_almanium", String.valueOf(order_type_m));
+        Log.d("order_Type_almanium", String.valueOf(order_type_aluminium));
         total_waste = Integer.parseInt(tot_waste);
         btn_conf_weight.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,12 +134,12 @@ Context context;
                     user_order.put("Total_waste", total_waste);
                     user_order.put("Latitude", lat_loc);
                     user_order.put("Longitude", long_loc);
-                    user_order.put("weight of iron", inp_type_ir);
-                    user_order.put("weight of plastic", inp_type_pl);
-                    user_order.put("weight of almanium", inp_type_alm);
-                    user_order.put("weight of paper", inp_type_pa);
-                    user_order.put("weight of carton", inp_type_cart);
-                    user_order.put("weight of copper", inp_type_nuh);
+                    user_order.put("weight of iron", inp_type_iron);
+                    user_order.put("weight of plastic", inp_type_plastic);
+                    user_order.put("weight of aluminium", inp_type_aluminium);
+                    user_order.put("weight of paper", inp_type_paper);
+                    user_order.put("weight of carton", inp_type_carton);
+                    user_order.put("weight of copper", inp_type_copper);
                     user_order.put("uid", uid);
                     firestore.collection("User_Order").add(user_order).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
@@ -144,61 +148,68 @@ Context context;
                             HashMap<String, Object> my_recycling = new HashMap<>();
                             if (task.isSuccessful()) {
                                 final Date date = new Date();
+                                total_price=0.0;
+                                if (inp_type_iron != null) {
+                                    price_of_iron=s.format(Integer.parseInt(inp_type_iron.trim())*(0.05));
+                                    my_recycling.put("price_of_iron",price_of_iron);
+                                    //Double s=Double.parseDouble(total_price.trim());
 
-                                if (inp_type_ir != null) {
-                                    priceof_iron = Integer.parseInt(inp_type_ir) * 0.05;
-                                    my_recycling.put("price_of_iron", priceof_iron);
-                                    total_d = total_d + priceof_iron;
-                                }
-
-                                if (inp_type_pl != null) {
-                                    price_of_plas = Integer.parseInt(inp_type_pl) * 0.03;
-                                    my_recycling.put("Price_of_plastic", price_of_plas);
-                                    total_d = total_d + price_of_plas;
-                                }
-                                if (inp_type_alm != null) {
-                                    price_of_alm = Integer.parseInt(inp_type_alm) * 0.20;
-                                    my_recycling.put("price_of_alm", price_of_alm);
-                                    total_d = total_d + price_of_alm;
-                                }
-                                if (inp_type_cart != null) {
-                                    price_of_cart = Integer.parseInt(inp_type_cart) * 0.02;
-                                    my_recycling.put("Price_of_cart", price_of_cart);
-                                    total_d += price_of_cart;
+                                    total_price = total_price +  Double.parseDouble(price_of_iron);
                                 }
 
-                                if (inp_type_nuh != null) {
-                                    price_of_nuh = Integer.parseInt(inp_type_nuh) * 0.80;
-                                    my_recycling.put("Price_of_cu", price_of_nuh);
-                                    total_d += price_of_nuh;
+                                if (inp_type_plastic != null) {
+                                   price_of_plastic= s.format(Integer.parseInt(inp_type_plastic) * (0.03));
+                                    my_recycling.put("Price_of_plastic", price_of_plastic);
+
+                                    total_price = total_price + Double.parseDouble(price_of_plastic);
                                 }
-                                if (inp_type_pa != null) {
-                                    price_of_pap = Integer.parseInt(inp_type_pa) * 0.02;
-                                    my_recycling.put("Price_of_pap", price_of_pap);
-                                    total_d += price_of_pap;
+                                if (inp_type_aluminium != null) {
+                                price_of_aluminium = s.format(Integer.parseInt(inp_type_aluminium.trim())*(0.20));
+                                my_recycling.put("price_of_alm", (price_of_aluminium));
+                                    total_price = total_price + Double.parseDouble(price_of_aluminium);
                                 }
+                                if (inp_type_carton != null) {
+                                   price_of_carton = s.format(Integer.parseInt(inp_type_carton) * (0.02));
+                                    my_recycling.put("Price_of_cart", price_of_carton);
+                                    total_price = total_price+Double.parseDouble(price_of_carton);
+                                }
+
+                                if (inp_type_copper != null) {
+                                    price_of_copper=s.format( Integer.parseInt(inp_type_copper) * 0.80);
+                                    my_recycling.put("Price_of_cu", price_of_copper);
+                                    total_price = total_price+Double.parseDouble(price_of_copper);
+                                }
+                                if (inp_type_paper != null)
+                                {
+                                   price_of_paper = s.format(Integer.parseInt(inp_type_paper) * 0.02);
+                                    my_recycling.put("Price_of_pap", price_of_paper);
+                                    total_price = total_price+Double.parseDouble(price_of_paper);
+                                }
+
                                 my_recycling.put("UID", mAuth.getCurrentUser().getUid());
                                 my_recycling.put("Date", date);
-                                my_recycling.put("Total", total_d);
+                                my_recycling.put("Total",total_price);
+
                                 firestore.collection("My_Recycling").add(my_recycling).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                     @Override
                                     public void onComplete(@NonNull Task<DocumentReference> task) {
                                         if (task.isSuccessful()) {
+
                                             firestore.collection("Token").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                    Reqnot(task.getResult().get("Token").toString(),"thank you for user tcyle");
-                                                    HashMap<String,Object> Notificationmap = new HashMap<>();
-                                                    Notificationmap.put("Msg" , "شكراً لك على مساهمتك للحفاظ على البيئة");
-                                                    Notificationmap.put("date" , new Date());
-                                                    Notificationmap.put("UserID",uid);
-
+                                                    String Token_ID=task.getResult().get("tokenid").toString();
+                                                    Request_Notify(Token_ID,"thank you for using t-cycle");
+                                                    HashMap<String,Object> notification_map = new HashMap<>();
+                                                    notification_map.put("Msg" , "شكراً لك على مساهمتك للحفاظ على البيئة");
+                                                    notification_map.put("date" , new Date());
+                                                    notification_map.put("UserID",uid);
                                                     firestore.collection("Notification").document(UUID.randomUUID().toString())
-                                                            .set(Notificationmap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            .set(notification_map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
                                                             if (task.isSuccessful())
-                                                            {
+                                                            { //total_price=0;
 
                                                             }
                                                         }
@@ -225,59 +236,50 @@ Context context;
         return builder.create();
 
     }
-    public void Reqnot(String ID, String Msg) {
+    public void Request_Notify(String ID, String Msg) {
         Notify notify = new Notify(ID, Msg);
         notify.execute();
+        Log.d("ID_NOT",String.valueOf(ID));
 
     }
 
     public class Notify extends AsyncTask<Void, Void, Void> {
 
-        private String ID, Msg;
-
-        Notify(String Reciver, String Msg) {
-            ID = Reciver;
-            this.Msg = Msg;
-            Log.d("Not", ID+"\n"+String.valueOf(Msg));
+        private String UID_notify, Msg;
+        Notify(String Rec, String msg) {
+            this.UID_notify = Rec;
+            this.Msg = msg;
+            Log.d("Not", UID_notify+"\n"+String.valueOf(Msg));
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
 
             try {
-
                 URL url = new URL("https://fcm.googleapis.com/fcm/send");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-
                 conn.setUseCaches(false);
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
-
                 conn.setRequestMethod("POST");
-                conn.setRequestProperty("Authorization","key=AIzaSyARUYhU0qleq6Dlbj6ZQ9b0JXyB3bqsYIo");
+                conn.setRequestProperty("Authorization","key=AAAACcZAZDU:APA91bFKDWLgH_u1En_R5_sWvkOD4legjv81RAjqLhUcZ0O3tOluX2RnRRA3gl5lCeA4n0VoswLXXlszWu1JxxCNMA25Nb7TyiV-qj_2wUSeqwHtcpKPVRxxU269oLakLhU2afkPDF1g");
                 conn.setRequestProperty("Content-Type", "application/json");
-
                 JSONObject json = new JSONObject();
-
-                json.put("to", ID);
-
+                json.put("to", UID_notify);
+                Log.d("notify", String.valueOf(json));
                 JSONObject info = new JSONObject();
-                info.put("body", Msg);   // Notification title
-                info.put("title", "Tcycle"); // Notification body
+                info.put("body", Msg);
+                info.put("title", "T-cycle");
                 info.put("content_available", "true");
                 info.put("priority", "high");
-
                 json.put("notification", info);
-                Log.d("Not", String.valueOf(info));
-                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-                wr.write(json.toString());
-                wr.flush();
+                Log.d("notify", String.valueOf(info));
+                OutputStreamWriter writer_json = new OutputStreamWriter(conn.getOutputStream());
+                writer_json.write(json.toString());
+                writer_json.flush();
                 conn.getInputStream();
-
-                //Toast.makeText(getBaseContext(),"Done",Toast.LENGTH_LONG).show();
-
             } catch (Exception e) {
-                Log.d("ErrorOne", "" + e);
+                Log.d("Error", "" + e.getMessage());
             }
             return null;
         }

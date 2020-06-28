@@ -41,10 +41,10 @@ public class Verify_Code_Activity extends AppCompatActivity {
         btn_signin=findViewById(R.id.btn_signin);
         txt_code=findViewById(R.id.txt_code);
         mAuth=FirebaseAuth.getInstance();
-phonenumber=getIntent().getStringExtra("phonenumber");
-Log.d("Pho",String.valueOf(phonenumber));
-send_ver_code(phonenumber);
-btn_signin.setOnClickListener(new View.OnClickListener() {
+        phonenumber=getIntent().getStringExtra("phonenumber");
+        Log.d("Pho",String.valueOf(phonenumber));
+     send_ver_code(phonenumber);
+      btn_signin.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
         String c=txt_code.getText().toString().trim();
@@ -105,4 +105,5 @@ if (code!=null)
 Toast.makeText(Verify_Code_Activity.this,e.getMessage(),Toast.LENGTH_LONG).show();
         }
     };
+
 }

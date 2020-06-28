@@ -53,7 +53,7 @@ StorageReference firebaseStorage;
         btn_update=findViewById(R.id.btn_up_info);
         firestore=FirebaseFirestore.getInstance();
         firebaseStorage=FirebaseStorage.getInstance().getReference();
-mAuth=FirebaseAuth.getInstance();
+        mAuth=FirebaseAuth.getInstance();
         btn_location=findViewById(R.id.btn_location);
         img_profile_upadte.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +69,7 @@ mAuth=FirebaseAuth.getInstance();
         lon=intent.getStringExtra("longitude");
 
 
-r_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        r_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
     @Override
     public void onCheckedChanged(RadioGroup group, int i) {
         switch(i){
@@ -80,12 +80,15 @@ r_group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                 Gender="Female";
                 break;}
         Toast.makeText(getApplicationContext(),"gende is :"+Gender,Toast.LENGTH_LONG).show();
+
     }
-});
-btn_location.setOnClickListener(new View.OnClickListener() {
+
+
+        });
+
+        btn_location.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-
 
         Intent intent=new Intent(Profile_Activity.this, MapsActivity.class);
         startActivity(intent);
@@ -105,10 +108,10 @@ btn_location.setOnClickListener(new View.OnClickListener() {
            img_path.putFile(image_uri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                @Override
                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-img_path.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                   img_path.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
     @Override
     public void onComplete(@NonNull Task<Uri> task) {
-        String imguri=task.getResult().toString();
+                 String imguri=task.getResult().toString();
         HashMap<String,String> user_info=new HashMap<>();
         user_info.put("username",us_name);
         user_info.put("phone_num",phone_n);
@@ -122,6 +125,7 @@ img_path.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
               if(task.isSuccessful()){
                   Intent intent1=new Intent(Profile_Activity.this,Home_Activity.class);
                   startActivity(intent1);
+                  Toast.makeText(getApplicationContext(),"Done",Toast.LENGTH_LONG).show();
               }
           }
       });

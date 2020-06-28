@@ -54,46 +54,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
          @Override
          public void onMapClick(final LatLng latLng) {
-             AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
-             builder.setTitle("Location Alert ");
-             builder.setMessage("Are you sure Select Location ?");
-             builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                 @Override
-                 public void onClick(DialogInterface dialog, int which) {
-                     String lati = String.valueOf(latLng.latitude);
-                     String longa = String.valueOf(latLng.longitude);
-                     //String cityname = null;
-                     try {
-                         Geocoder geocoder = new Geocoder(MapsActivity.this);
-                         List<Address> addresses = null;
-                         addresses = geocoder.getFromLocation(Double.parseDouble(lati), Double.parseDouble(longa), 1);
-                         //cityname = addresses.get(0).getAddressLine();
+             String lati = String.valueOf(latLng.latitude);
+             String longa = String.valueOf(latLng.longitude);
+             mMap.addMarker(markerOptions.position(latLng).title("Ad Location"));
+             finish();
+             Profile_Activity.lat = lati;
+             Profile_Activity.lon = longa;
+             dialoge_confirmation.lat=lati;
+             dialoge_confirmation.lon=longa;
 
-                     } catch (IOException e) {
-                         e.printStackTrace();
-
-                     }
-                     mMap.addMarker(markerOptions.position(latLng).title("Ad Location"));
-                     finish();
-                     Profile_Activity.lat = lati;
-                     Profile_Activity.lon = longa;
-                     dialoge_confirmation.lat=lati;
-                     dialoge_confirmation.lon=longa;
-                 }
-             });
-             builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                 @Override
-                 public void onClick(DialogInterface dialog, int which) {
-
-                 }
-             });
-             builder.create().show();
          }
      });
 
  } catch (SecurityException e) {
             e.printStackTrace();
-
     }
     }
 }

@@ -20,8 +20,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class View_Order_Adapter extends RecyclerView.Adapter<View_Order_Adapter.ViewHolder> {
-FirebaseAuth mAuth;
-FirebaseFirestore firestore;
+
 public Context context;
 List<My_Recycling>my_recyclings;
 CardView card_order;
@@ -34,8 +33,7 @@ CardView card_order;
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View root= LayoutInflater.from(parent.getContext()).inflate(R.layout.view_oder,parent,false);
-        firestore=FirebaseFirestore.getInstance();
-        mAuth=FirebaseAuth.getInstance();
+
         context=parent.getContext();
         card_order=root.findViewById(R.id.card_order);
         return new ViewHolder(root);
@@ -45,18 +43,24 @@ CardView card_order;
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
        holder.setIsRecyclable(false);
         String user=my_recyclings.get(position).getUID();
-        Double pr_of_iron=my_recyclings.get(position).getPrice_of_iron();
-        Double pr_of_pla=my_recyclings.get(position).getPrice_of_plastic();
-        Double pr_of_alm=my_recyclings.get(position).getPrice_of_alm();
-        Double pr_of_cu=my_recyclings.get(position).getPrice_of_cu();
-        Double pr_of_cart=my_recyclings.get(position).getPrice_of_cart();
-        Double pr_of_pap=my_recyclings.get(position).getPrice_of_pap();
-holder.pr_iron(String.valueOf(pr_of_iron));
-holder.pr_pla(String.valueOf(pr_of_pla));
-holder.pr_alm(String.valueOf(pr_of_alm));
-        long date_post = my_recyclings.get(position).getDate().getTime();
-        String dateString = DateFormat.format("dd MMM yyyy", new Date(date_post)).toString();
-        holder.setDate(dateString);
+        String pr_of_iron=my_recyclings.get(position).getPrice_of_iron();
+        String pr_of_pla=my_recyclings.get(position).getPrice_of_plastic();
+        String pr_of_alm=my_recyclings.get(position).getPrice_of_alm();
+        String pr_of_cu=my_recyclings.get(position).getPrice_of_cu();
+        String pr_of_cart=my_recyclings.get(position).getPrice_of_cart();
+        String pr_of_pap=my_recyclings.get(position).getPrice_of_pap();
+       Double total_rec=my_recyclings.get(position).getTotal();
+
+        holder.pr_iron(String.valueOf(pr_of_iron));
+
+        holder.pr_pla(String.valueOf(pr_of_pla));
+
+        holder.pr_alm(String.valueOf(pr_of_alm));
+
+        holder.setTotal(String.valueOf(total_rec));
+        long order_date = my_recyclings.get(position).getDate().getTime();
+        String ord_date = DateFormat.format("dd MMM yyyy", new Date(order_date)).toString();
+        holder.setDate(ord_date);
         Log.d("Pr_iron",String.valueOf(pr_of_iron));
 
     }
@@ -69,7 +73,7 @@ holder.pr_alm(String.valueOf(pr_of_alm));
     public class ViewHolder extends RecyclerView.ViewHolder {
 View mview;
 
-        TextView txt_tit1,txt_tit2,txt_tit3,txt_we_1,txt_we_2,txt_we_3;
+        TextView txt_tit1,txt_tit2,txt_tit3,txt_we_1,txt_we_2,txt_we_3,txt_tot;
 Button btn_date;
         public void pr_iron( String ir){
             this.txt_tit1=mview.findViewById(R.id.txt_tit_1);
@@ -96,6 +100,11 @@ Button btn_date;
         { this.btn_date =mview.findViewById(R.id.btn_date_order);
             this.btn_date.setText(dt);
 
+        }
+        public void setTotal(String Tot)
+        {
+            this.txt_tot=mview.findViewById(R.id.txt_tot_rec);
+            this.txt_tot.setText(Tot);
         }
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
