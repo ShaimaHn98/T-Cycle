@@ -53,7 +53,7 @@ Context context;
         viewOrderAdapter=new View_Order_Adapter(my_recyclingList);
         rec_order.setAdapter(viewOrderAdapter);
         rec_order.setLayoutManager(new LinearLayoutManager(getActivity()));
-        Query first_query=firestore.collection("My_Recycling").orderBy("Date", Query.Direction.DESCENDING).whereEqualTo("UID",mAuth.getCurrentUser().getUid());
+        Query first_query=firestore.collection("My_Recycling").orderBy("Date", Query.Direction.DESCENDING);
         first_query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {

@@ -63,9 +63,10 @@ public class dialoge_confirmation extends DialogFragment {
    static Double total_price;
 
     TextView txt_loc;
-   String UID,User_Order;
+   String UID,User_Order,total_s;
    Context context;
     DecimalFormat  s= new DecimalFormat();
+
 
 
     @NonNull
@@ -152,32 +153,36 @@ public class dialoge_confirmation extends DialogFragment {
                                 if (inp_type_iron != null) {
                                     price_of_iron=s.format(Integer.parseInt(inp_type_iron.trim())*(0.05));
                                     my_recycling.put("price_of_iron",price_of_iron);
-                                    //Double s=Double.parseDouble(total_price.trim());
 
-                                    total_price = total_price +  Double.parseDouble(price_of_iron);
+                                    total_s =s.format( total_price +  Double.parseDouble(price_of_iron));
+                                    total_price=Double.parseDouble(total_s);
                                 }
 
                                 if (inp_type_plastic != null) {
                                    price_of_plastic= s.format(Integer.parseInt(inp_type_plastic) * (0.03));
                                     my_recycling.put("Price_of_plastic", price_of_plastic);
 
-                                    total_price = total_price + Double.parseDouble(price_of_plastic);
+                                    total_s = s.format(total_price + Double.parseDouble(price_of_plastic));
+                                    total_price=Double.parseDouble(total_s);
                                 }
                                 if (inp_type_aluminium != null) {
                                 price_of_aluminium = s.format(Integer.parseInt(inp_type_aluminium.trim())*(0.20));
                                 my_recycling.put("price_of_alm", (price_of_aluminium));
-                                    total_price = total_price + Double.parseDouble(price_of_aluminium);
+                                    total_s =s.format( total_price + Double.parseDouble(price_of_aluminium));
+                                    total_price=Double.parseDouble(total_s);
                                 }
                                 if (inp_type_carton != null) {
                                    price_of_carton = s.format(Integer.parseInt(inp_type_carton) * (0.02));
                                     my_recycling.put("Price_of_cart", price_of_carton);
-                                    total_price = total_price+Double.parseDouble(price_of_carton);
+                                    total_s = s.format(total_price+Double.parseDouble(price_of_carton));
+                                    total_price=Double.parseDouble(total_s);
                                 }
 
                                 if (inp_type_copper != null) {
                                     price_of_copper=s.format( Integer.parseInt(inp_type_copper) * 0.80);
                                     my_recycling.put("Price_of_cu", price_of_copper);
-                                    total_price = total_price+Double.parseDouble(price_of_copper);
+                                    total_s = s.format(total_price+Double.parseDouble(price_of_copper));
+                                    total_price=Double.parseDouble(total_s);
                                 }
                                 if (inp_type_paper != null)
                                 {
@@ -225,7 +230,9 @@ public class dialoge_confirmation extends DialogFragment {
                             }
                         }
                     });
-
+                    Intent intent_s=new Intent(getContext(),Home_Activity.class);
+                    startActivity(intent_s);
+                    Toast.makeText(getContext(),"Done",Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getActivity(), "الوزن لا يكفي لطلبك", Toast.LENGTH_LONG).show();
                 }
@@ -234,6 +241,7 @@ public class dialoge_confirmation extends DialogFragment {
         dialog_weight.total_waste = 0;
 
         return builder.create();
+
 
     }
     public void Request_Notify(String ID, String Msg) {
