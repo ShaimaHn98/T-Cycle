@@ -8,7 +8,7 @@ private Double Total;
 private Date Date;
 String UID;
 
-    public My_Recycling(String price_of_pap, String price_of_cu, String price_of_cart, String price_of_alm, String price_of_plastic, String price_of_iron, Double total, java.util.Date date, String UID) {
+    public My_Recycling(String price_of_pap, String price_of_cu, String price_of_cart, String price_of_alm, String price_of_plastic, String price_of_iron, Double total, java.util.Date Date, String UID) {
         Price_of_pap = price_of_pap;
         Price_of_cu = price_of_cu;
         Price_of_cart = price_of_cart;
@@ -16,7 +16,7 @@ String UID;
         Price_of_plastic = price_of_plastic;
         this.price_of_iron = price_of_iron;
         this.Total = total;
-        Date = date;
+        this.Date = Date;
         this.UID = UID;
     }
 
@@ -56,6 +56,9 @@ String UID;
         return price_of_iron;
     }
 
-    public My_Recycling() {
+    public My_Recycling()
+    {
+
     }
+
 }

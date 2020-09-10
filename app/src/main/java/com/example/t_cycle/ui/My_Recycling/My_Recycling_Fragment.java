@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -44,7 +43,7 @@ Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        View root = inflater.inflate(R.layout.fragment_myresycling, container, false);
         firestore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
         context=getActivity().getApplicationContext();
@@ -57,24 +56,21 @@ Context context;
         first_query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot documentSnapshots, @Nullable FirebaseFirestoreException e) {
-                if (!documentSnapshots.isEmpty())
+                if (documentSnapshots != null)
                 {
                     for(DocumentChange documentChange :documentSnapshots.getDocumentChanges())
                     {
-                        if (documentChange.getType() ==DocumentChange.Type.ADDED)
-                       try {
+                        if (documentChange.getType() == DocumentChange.Type.ADDED){
                             My_Recycling my_recycling=documentChange.getDocument().toObject(My_Recycling.class);
-                            my_recyclingList.add(my_recycling);
-                            viewOrderAdapter.notifyDataSetChanged();
-                            rec_order.scheduleLayoutAnimation();
-
+                            if (my_recycling.getUID().equals( mAuth.getUid())) {
+                                my_recyclingList.add(my_recycling);
+                                viewOrderAdapter.notifyDataSetChanged();
+                                rec_order.scheduleLayoutAnimation();
+                            }
 
 
                         }
-                        catch (Exception e1)
-                        {
-                            Toast.makeText(getContext(),"Catch:"+e1.getMessage(),Toast.LENGTH_LONG).show();
-                        }
+
                     }
 
                 }

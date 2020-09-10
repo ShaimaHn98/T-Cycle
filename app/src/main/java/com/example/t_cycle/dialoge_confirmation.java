@@ -13,7 +13,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,8 +44,11 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class dialoge_confirmation extends DialogFragment {
@@ -61,14 +67,14 @@ public class dialoge_confirmation extends DialogFragment {
     static String inp_type_aluminium, inp_type_iron, inp_type_plastic, inp_type_paper, inp_type_copper, inp_type_carton;
     static String price_of_iron, price_of_aluminium, price_of_carton, price_of_copper, price_of_plastic, price_of_paper;
    static Double total_price;
-
+Spinner spinner;
     TextView txt_loc;
    String UID,User_Order,total_s;
    Context context;
+   static int key;
     DecimalFormat  s= new DecimalFormat();
-
-
-
+    Spinner spiner;
+String date_order;
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -82,6 +88,28 @@ public class dialoge_confirmation extends DialogFragment {
         firestore = FirebaseFirestore.getInstance();
         String uid = mAuth.getCurrentUser().getUid();
         txt_conf_weight.setText(tot_waste + " Kg");
+        spiner=view.findViewById(R.id.spinner_days);
+
+List<String>list=new ArrayList<>();
+list.add("الأحد");
+list.add("الاربعاء");
+final ArrayAdapter<String>adapter=new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,list);
+adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+spiner.setAdapter(adapter);
+spiner.setOnItemSelectedListener(
+        new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item=adapterView.getItemAtPosition(i).toString();
+date_order=item;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        }
+);
         firestore.collection("User_Info").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -118,15 +146,83 @@ public class dialoge_confirmation extends DialogFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (total_waste >= 5) {
-                    final String uid = mAuth.getCurrentUser().getUid();
-                    final String us_n = usernam;
-                    final String ph_n = phonenumbe;
-                    final String total_waste = tot_waste;
-                    final String lat_loc = lat;
-                    final String long_loc = lon;
-                    final Date date = new Date();
+                    if (key==1) {
+                        final String uid = mAuth.getCurrentUser().getUid();
+                        final String us_n = usernam;
+                        final String ph_n = phonenumbe;
+                        final String total_waste = tot_waste;
+                        final String lat_loc = lat;
+                        final String long_loc = lon;
+                        final Date date = new Date();
+                        HashMap<String, Object> user_order = new HashMap<>();
+                        user_order.put("username", us_n);
+                        user_order.put("phone_number", ph_n);
+                        user_order.put("Date", date);
+                        user_order.put("Total_waste", total_waste);
+                        user_order.put("Latitude", lat_loc);
+                        user_order.put("Longitude", long_loc);
+                        user_order.put("uid", uid);
+                        user_order.put("date_order",date_order);
+                        firestore.collection("User_Order").document().collection("All waste").add(user_order).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentReference> task) {
 
-                    //   set User_Order   //
+                                HashMap<String, Object> my_recycling = new HashMap<>();
+                                if (task.isSuccessful()) {
+
+                                    my_recycling.put("UID", mAuth.getCurrentUser().getUid());
+                                    my_recycling.put("Date", date);
+                                    my_recycling.put("Total", total_waste);
+
+                                    firestore.collection("My_Recycling").add(my_recycling).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentReference> task) {
+                                            if (task.isSuccessful()) {
+
+                                                firestore.collection("Token").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                        String Token_ID = task.getResult().get("tokenid").toString();
+                                                        Request_Notify(Token_ID, "شكراً لك على مساهمتك للحفاظ على البيئة" + ";" +" وموعد تسليم طلبك هو يوم "+ date_order);
+                                                        HashMap<String, Object> notification_map = new HashMap<>();
+                                                        notification_map.put("Msg", "شكراً لك على مساهمتك للحفاظ على البيئة");
+                                                        notification_map.put("date", new Date());
+                                                        notification_map.put("UserID", uid);
+                                                        firestore.collection("Notification").document(UUID.randomUUID().toString())
+                                                                .set(notification_map).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()) { //total_price=0;
+
+                                                                }
+                                                            }
+                                                        });
+                                                    }
+                                                });
+
+                                            }
+                                        }
+                                    });
+
+
+                                }
+                            }
+                        });
+                        Intent intent_s = new Intent(getContext(), Home_Activity.class);
+                        startActivity(intent_s);
+                        Toast.makeText(getContext(), "Done", Toast.LENGTH_LONG).show();
+
+
+                    }
+else if (key!=1){
+    final String uid = mAuth.getCurrentUser().getUid();
+                        final String us_n = usernam;
+                        final String ph_n = phonenumbe;
+                        final String total_waste = tot_waste;
+                        final String lat_loc = lat;
+                        final String long_loc = lon;
+                        final Date date = new Date();
+                        //   set User_Order   //
 
                     HashMap<String, Object> user_order = new HashMap<>();
                     user_order.put("username", us_n);
@@ -142,6 +238,7 @@ public class dialoge_confirmation extends DialogFragment {
                     user_order.put("weight of carton", inp_type_carton);
                     user_order.put("weight of copper", inp_type_copper);
                     user_order.put("uid", uid);
+                    user_order.put("date_order",date_order);
                     firestore.collection("User_Order").add(user_order).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentReference> task) {
@@ -149,51 +246,50 @@ public class dialoge_confirmation extends DialogFragment {
                             HashMap<String, Object> my_recycling = new HashMap<>();
                             if (task.isSuccessful()) {
                                 final Date date = new Date();
-                                total_price=0.0;
+                                total_price = 0.0;
                                 if (inp_type_iron != null) {
-                                    price_of_iron=s.format(Integer.parseInt(inp_type_iron.trim())*(0.05));
-                                    my_recycling.put("price_of_iron",price_of_iron);
+                                    price_of_iron = s.format(Integer.parseInt(inp_type_iron.trim()) * (0.05));
+                                    my_recycling.put("price_of_iron", price_of_iron);
 
-                                    total_s =s.format( total_price +  Double.parseDouble(price_of_iron));
-                                    total_price=Double.parseDouble(total_s);
+                                    total_s = s.format(total_price + Double.parseDouble(price_of_iron));
+                                    total_price = Double.parseDouble(total_s);
                                 }
 
                                 if (inp_type_plastic != null) {
-                                   price_of_plastic= s.format(Integer.parseInt(inp_type_plastic) * (0.03));
+                                    price_of_plastic = s.format(Integer.parseInt(inp_type_plastic) * (0.03));
                                     my_recycling.put("Price_of_plastic", price_of_plastic);
 
                                     total_s = s.format(total_price + Double.parseDouble(price_of_plastic));
-                                    total_price=Double.parseDouble(total_s);
+                                    total_price = Double.parseDouble(total_s);
                                 }
                                 if (inp_type_aluminium != null) {
-                                price_of_aluminium = s.format(Integer.parseInt(inp_type_aluminium.trim())*(0.20));
-                                my_recycling.put("price_of_alm", (price_of_aluminium));
-                                    total_s =s.format( total_price + Double.parseDouble(price_of_aluminium));
-                                    total_price=Double.parseDouble(total_s);
+                                    price_of_aluminium = s.format(Integer.parseInt(inp_type_aluminium.trim()) * (0.20));
+                                    my_recycling.put("price_of_alm", (price_of_aluminium));
+                                    total_s = s.format(total_price + Double.parseDouble(price_of_aluminium));
+                                    total_price = Double.parseDouble(total_s);
                                 }
                                 if (inp_type_carton != null) {
-                                   price_of_carton = s.format(Integer.parseInt(inp_type_carton) * (0.02));
+                                    price_of_carton = s.format(Integer.parseInt(inp_type_carton) * (0.02));
                                     my_recycling.put("Price_of_cart", price_of_carton);
-                                    total_s = s.format(total_price+Double.parseDouble(price_of_carton));
-                                    total_price=Double.parseDouble(total_s);
+                                    total_s = s.format(total_price + Double.parseDouble(price_of_carton));
+                                    total_price = Double.parseDouble(total_s);
                                 }
 
                                 if (inp_type_copper != null) {
-                                    price_of_copper=s.format( Integer.parseInt(inp_type_copper) * 0.80);
+                                    price_of_copper = s.format(Integer.parseInt(inp_type_copper) * 0.80);
                                     my_recycling.put("Price_of_cu", price_of_copper);
-                                    total_s = s.format(total_price+Double.parseDouble(price_of_copper));
-                                    total_price=Double.parseDouble(total_s);
+                                    total_s = s.format(total_price + Double.parseDouble(price_of_copper));
+                                    total_price = Double.parseDouble(total_s);
                                 }
-                                if (inp_type_paper != null)
-                                {
-                                   price_of_paper = s.format(Integer.parseInt(inp_type_paper) * 0.02);
+                                if (inp_type_paper != null) {
+                                    price_of_paper = s.format(Integer.parseInt(inp_type_paper) * 0.02);
                                     my_recycling.put("Price_of_pap", price_of_paper);
-                                    total_price = total_price+Double.parseDouble(price_of_paper);
+                                    total_price = total_price + Double.parseDouble(price_of_paper);
                                 }
 
                                 my_recycling.put("UID", mAuth.getCurrentUser().getUid());
                                 my_recycling.put("Date", date);
-                                my_recycling.put("Total",total_price);
+                                my_recycling.put("Total", total_price);
 
                                 firestore.collection("My_Recycling").add(my_recycling).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                                     @Override
@@ -203,18 +299,17 @@ public class dialoge_confirmation extends DialogFragment {
                                             firestore.collection("Token").document(mAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                                    String Token_ID=task.getResult().get("tokenid").toString();
-                                                    Request_Notify(Token_ID,"thank you for using t-cycle");
-                                                    HashMap<String,Object> notification_map = new HashMap<>();
-                                                    notification_map.put("Msg" , "شكراً لك على مساهمتك للحفاظ على البيئة");
-                                                    notification_map.put("date" , new Date());
-                                                    notification_map.put("UserID",uid);
+                                                    String Token_ID = task.getResult().get("tokenid").toString();
+                                                    Request_Notify(Token_ID, "شكراً لك على مساهمتك للحفاظ على البيئة"+ ";" +" وموعد تسليم طلبك هو يوم "+  date_order);
+                                                    HashMap<String, Object> notification_map = new HashMap<>();
+                                                    notification_map.put("Msg",  "شكراً لك على مساهمتك للحفاظ على البيئة" );
+                                                    notification_map.put("date", new Date());
+                                                    notification_map.put("UserID", uid);
                                                     firestore.collection("Notification").document(UUID.randomUUID().toString())
                                                             .set(notification_map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
                                                         public void onComplete(@NonNull Task<Void> task) {
-                                                            if (task.isSuccessful())
-                                                            { //total_price=0;
+                                                            if (task.isSuccessful()) { //total_price=0;
 
                                                             }
                                                         }
@@ -230,10 +325,10 @@ public class dialoge_confirmation extends DialogFragment {
                             }
                         }
                     });
-                    Intent intent_s=new Intent(getContext(),Home_Activity.class);
+                    Intent intent_s = new Intent(getContext(), Home_Activity.class);
                     startActivity(intent_s);
-                    Toast.makeText(getContext(),"Done",Toast.LENGTH_LONG).show();
-                } else {
+                    Toast.makeText(getContext(), "Done", Toast.LENGTH_LONG).show();
+                } } else {
                     Toast.makeText(getActivity(), "الوزن لا يكفي لطلبك", Toast.LENGTH_LONG).show();
                 }
             }
@@ -280,6 +375,7 @@ public class dialoge_confirmation extends DialogFragment {
                 info.put("title", "T-cycle");
                 info.put("content_available", "true");
                 info.put("priority", "high");
+                info.put("show_in_foreground", "true");
                 json.put("notification", info);
                 Log.d("notify", String.valueOf(info));
                 OutputStreamWriter writer_json = new OutputStreamWriter(conn.getOutputStream());

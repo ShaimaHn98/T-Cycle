@@ -8,8 +8,9 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="364dp"
-        android:layout_height="423dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -40,13 +41,26 @@
     <TextView
         android:id="@+id/textView12"
         android:layout_width="0dp"
-        android:layout_height="156dp"
-        android:layout_marginBottom="52dp"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/txtview_ph"
         android:layoutDirection="rtl"
         android:textColor="@color/colorPrimary"
         android:textDirection="rtl"
+        app:layout_constraintBottom_toTopOf="@+id/btn_verification"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <Button
+        android:id="@+id/btn_verification"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorforveriy"
+        android:text="تأكيد  الطلب"
+        android:textColorHighlight="@color/colorforveriy"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

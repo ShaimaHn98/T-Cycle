@@ -136,6 +136,10 @@ static int type_input;
                         dialoge_confirmation.inp_type_copper=cont+"Kg";
                         //  weight=cont;
                     }
+                    else if(type_input==6)
+                    {
+                        dialoge_confirmation.tot_waste=String.valueOf(total);
+                    }
 
 
                 }

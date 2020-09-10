@@ -7,8 +7,11 @@ import android.view.View;
 import android.widget.Button;
 
 public class All_Waste_Activity extends AppCompatActivity {
-Button btn_w_all;
+Button btn_w_all,conf;
 dialoge_confirmation dialoge_confirmation;
+dialog_weight dialog_weight;
+int key=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,11 +20,20 @@ dialoge_confirmation dialoge_confirmation;
         btn_w_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                dialoge_confirmation=new dialoge_confirmation();
-                dialoge_confirmation.show(getSupportFragmentManager(),null);
-
+                dialog_weight=new dialog_weight();
+                dialog_weight.show(getSupportFragmentManager(),null);
+                com.example.t_cycle.dialog_weight.type_input=6;
             }
         });
+        conf=findViewById(R.id.btn_verification);
+        conf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialoge_confirmation.key=key;
+                dialoge_confirmation=new dialoge_confirmation();
+                dialoge_confirmation.show(getSupportFragmentManager(),null);
+            }
+        });
+
     }
 }

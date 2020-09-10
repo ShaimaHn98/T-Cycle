@@ -9,12 +9,12 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
-        android:layout_height="54dp"
+        android:layout_height="wrap_content"
         android:background="@color/colorSecondry"
         android:gravity="center"
         android:text="اختر طريقة الفرز     "
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="16sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -24,7 +24,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,8 +43,8 @@
 
                 <ImageView
                     android:id="@+id/imageView3"
-                    android:layout_width="339dp"
-                    android:layout_height="232dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
 
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -76,7 +76,7 @@
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="match_parent"
-                    android:layout_height="245dp"
+                    android:layout_height="150dp"
                     android:src="@drawable/allwaste" />
 
                 <Button

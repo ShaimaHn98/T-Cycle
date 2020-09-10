@@ -1,14 +1,25 @@
 package com.example.t_cycle;
 
 import androidx.fragment.app.FragmentActivity;
+
+import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -43,12 +54,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             mMap.setMyLocationEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
             final MarkerOptions markerOptions = new MarkerOptions();
+            final Circle circle = mMap.addCircle(new CircleOptions()
+                    .center(new LatLng(30.833244, 35.615557))
+                    .radius(3381.71)
+                    .strokeColor(Color.RED)
+                    .fillColor(Color.TRANSPARENT));
+
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(final LatLng latLng) {
                     String lati = String.valueOf(latLng.latitude);
                     String longa = String.valueOf(latLng.longitude);
+
+
+
+                    float[] distance = new float[2];
+                    Location.distanceBetween(latLng.latitude, latLng.longitude, circle.getCenter().latitude,circle.getCenter().longitude,distance);
+
+
+                    if (!( distance[0] <= circle.getRadius()))
+                    {
+                        Toast.makeText(getApplicationContext(), "المنطقة غير مدعومة ", Toast.LENGTH_LONG).show();
+                        return;
+                    }
                     mMap.addMarker(markerOptions.position(latLng).title("Ad Location"));
+
                     finish();
                     Profile_Activity.lat = lati;
                     Profile_Activity.lon = longa;
