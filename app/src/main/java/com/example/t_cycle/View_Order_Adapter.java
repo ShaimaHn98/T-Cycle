@@ -51,7 +51,7 @@ CardView card_order;
         String pr_of_pap=my_recyclings.get(position).getPrice_of_pap();
        Double total_rec=my_recyclings.get(position).getTotal();
 
-       if (pr_of_alm != null)
+       if (pr_of_iron != null)
            holder.pr_iron(String.valueOf(pr_of_iron));
 
        if (pr_of_pla != null)

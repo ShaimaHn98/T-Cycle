@@ -62,7 +62,8 @@ Context context;
                     {
                         if (documentChange.getType() == DocumentChange.Type.ADDED){
                             My_Recycling my_recycling=documentChange.getDocument().toObject(My_Recycling.class);
-                            if (my_recycling.getUID().equals( mAuth.getUid())) {
+                            if (my_recycling.getUID().equals( mAuth.getUid()))
+                            {
                                 my_recyclingList.add(my_recycling);
                                 viewOrderAdapter.notifyDataSetChanged();
                                 rec_order.scheduleLayoutAnimation();

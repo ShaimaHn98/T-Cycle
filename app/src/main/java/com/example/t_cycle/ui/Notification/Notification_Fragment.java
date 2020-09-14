@@ -61,20 +61,18 @@ List<Notification>notificationList;
                 {
                     for(DocumentChange documentChange :documentSnapshots.getDocumentChanges())
                     {
-                        if (documentChange.getType() ==DocumentChange.Type.ADDED)
-                            try {
-                                Notification my_notification=documentChange.getDocument().toObject(Notification.class);
+                        if (documentChange.getType() ==DocumentChange.Type.ADDED) {
+
+
+                            Notification my_notification = documentChange.getDocument().toObject(Notification.class);
+                            if (my_notification.getUserID().equals(mAuth.getCurrentUser().getUid())) {
                                 notificationList.add(my_notification);
                                 notification_adapter.notifyDataSetChanged();
                                 recyclerView.scheduleLayoutAnimation();
-
-
-
                             }
-                            catch (Exception e1)
-                            {
-                                Toast.makeText(getContext(),"Catch"+e1.getMessage(),Toast.LENGTH_LONG).show();
-                            }
+                        }
+
+
                     }
 
                 }

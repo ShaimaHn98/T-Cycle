@@ -40,10 +40,12 @@ public class Notification_Adapter  extends RecyclerView.Adapter<Notification_Ada
         String UID=notificationList.get(position).getUserID();
         String Msg=notificationList.get(position).getMsg();
         Date date=notificationList.get(position).getDate();
+        String date_order=notificationList.get(position).getDate_order();
         long order_date_not = notificationList.get(position).getDate().getTime();
         String date_not = DateFormat.format("dd MMM yyyy", new java.sql.Date(order_date_not)).toString();
         holder.set_txt_dt(date_not);
         holder.setTxt_msg(Msg);
+        holder.setTxt_order_date(date_order);
 
     }
 
@@ -56,11 +58,23 @@ public class Notification_Adapter  extends RecyclerView.Adapter<Notification_Ada
         View view;
         TextView txt_dt,txt_msg,txt_order_date;
 
-public void set_txt_dt(String date)
-{this.txt_dt=view.findViewById(R.id.txt_dt);
-this.txt_dt.setText(date);
 
-}
+
+
+            public void setTxt_order_date(String txt_order_date) {
+            this.txt_order_date = view.findViewById(R.id.txt_date_order);
+            this.txt_order_date.setText(" موعدك مع T-Cycle هو يوم "+txt_order_date+" وفقاُ لإختيارك ");
+        }
+
+            public void set_txt_dt(String date)
+
+            {
+            this.txt_dt=view.findViewById(R.id.txt_dt);
+
+        this.txt_dt.setText(date);
+
+
+        }
 
         public void setTxt_msg(String msg) {
             this.txt_msg = view.findViewById(R.id.txt_msg);

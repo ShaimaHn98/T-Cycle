@@ -21,12 +21,12 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="356dp"
-            android:layout_height="120dp"
+            android:layout_width="391dp"
+            android:layout_height="122dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/cap_d" />
+            app:srcCompat="@drawable/rec_delivery" />
 
         <LinearLayout
             android:layout_width="0dp"

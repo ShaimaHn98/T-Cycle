@@ -47,7 +47,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical">
 
@@ -61,10 +61,9 @@
                 <TextView
                     android:id="@+id/txt_date_order"
                     android:layout_width="match_parent"
-                    android:layout_height="36dp"
-                    android:layout_marginTop="42dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="0"
-                    android:text="موعدك مع T-Cycle يوم الأحد وفقاً لاختيارك"
                     android:textColor="@color/colorSecondry"
                     android:textDirection="rtl" />
             </LinearLayout>
