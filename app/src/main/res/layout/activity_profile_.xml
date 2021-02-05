@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile_Activity">
+    tools:context="com.tcycle.tcycle.Profile_Activity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/img_profile_update"
-        android:layout_width="345dp"
-        android:layout_height="131dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
         android:baseline="3dp"
         android:src="@drawable/blank_profile_picture"
         app:civ_border_color="@color/colorPrimaryDark"
@@ -36,32 +36,36 @@
         <EditText
             android:id="@+id/txt_username"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/txtview_ph"
             android:ems="10"
+            android:fontFamily="@font/tajawal"
             android:hint="الإسم"
             android:inputType="textPersonName"
             android:layoutDirection="rtl"
-            android:paddingRight="10dp"
+            android:padding="5dp"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorPrimaryDark"
-            android:textDirection="rtl" />
+            android:textDirection="rtl"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/txt_phone_n"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/txtview_ph"
             android:ems="10"
+            android:fontFamily="@font/tajawal"
             android:gravity="right"
             android:hint="رقم الهاتف"
             android:inputType="phone"
             android:layoutDirection="rtl"
-            android:paddingRight="10dp"
+            android:padding="5dp"
             android:textColor="@color/colorPrimary"
             android:textColorHint="@color/colorPrimaryDark"
-            android:textDirection="rtl" />
+            android:textDirection="rtl"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/gender_v"
@@ -69,6 +73,7 @@
             android:layout_height="38dp"
             android:layout_marginTop="15dp"
             android:ems="10"
+            android:fontFamily="@font/tajawal"
             android:hint="الجنس :"
             android:inputType="textPersonName"
             android:layoutDirection="rtl"
@@ -86,6 +91,7 @@
                 android:id="@+id/r_male"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/tajawal"
                 android:layoutDirection="rtl"
                 android:text="ذكر"
                 android:textColor="@color/colorPrimary"
@@ -96,6 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
+                android:fontFamily="@font/tajawal"
                 android:layoutDirection="rtl"
                 android:text="أنثى"
                 android:textColor="@color/colorPrimary"
@@ -109,6 +116,7 @@
             android:layout_marginLeft="260dp"
             android:background="@drawable/btn_style"
             android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:fontFamily="@font/tajawal"
             android:layoutDirection="rtl"
             android:text="الموقع"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
@@ -121,6 +129,7 @@
         android:layout_width="363dp"
         android:layout_height="47dp"
         android:background="@color/colorAccent"
+        android:fontFamily="@font/tajawal"
         android:text="تحديث البيانات"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"

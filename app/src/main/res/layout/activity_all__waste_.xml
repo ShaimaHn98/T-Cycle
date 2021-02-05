@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".All_Waste_Activity">
+    tools:context="com.tcycle.tcycle.All_Waste_Activity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -34,6 +34,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:background="@drawable/btn_style"
+                android:fontFamily="@font/tajawal"
                 android:text="اختر وزن نفاياتك"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textStyle="bold" />
@@ -42,7 +43,7 @@
                 android:id="@+id/imageView9"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/all__waste" />
+                app:srcCompat="@drawable/tips" />
 
         </LinearLayout>
 
@@ -53,6 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:background="@color/colorforveriy"
+        android:fontFamily="@font/tajawal"
         android:text="تأكيد  الطلب"
         android:textColor="@color/design_default_color_background"
         android:textColorHighlight="@color/colorforveriy"

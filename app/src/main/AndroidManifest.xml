@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.t_cycle" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.tcycle.tcycle" >
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -15,11 +16,16 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/t_cycle_logo"
+        android:icon="@drawable/logo_tcycle"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/t_cycle_logo"
-        android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+
+
+        android:roundIcon="@drawable/logo_tcycle"
+        android:theme="@style/AppTheme"
+        tools:ignore="HardcodedDebugMode"
+        android:supportsRtl="false"
+        android:layoutDirection="rtl"
+        tools:replace="android:supportsRtl">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

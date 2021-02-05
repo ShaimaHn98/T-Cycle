@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/common_google_signin_btn_text_dark_default"
     android:orientation="vertical"
-    tools:context=".Login_Activity">
+    tools:context="com.tcycle.tcycle.Login_Activity">
 
     <ImageView
         android:id="@+id/img_pro"
@@ -41,6 +41,7 @@
                 android:background="@drawable/txtview_ph"
                 android:drawableLeft="@drawable/ic_person"
                 android:ems="10"
+                android:fontFamily="@font/tajawal"
                 android:gravity="center"
                 android:hint="اسم المستخدم"
                 android:inputType="textPersonName"
@@ -67,6 +68,7 @@
                 android:background="@drawable/txtview_ph"
                 android:drawableLeft="@drawable/ic_phone_android"
                 android:ems="10"
+                android:fontFamily="@font/tajawal"
                 android:gravity="center"
                 android:hint="رقم الهاتف"
                 android:inputType="number|phone"
@@ -83,6 +85,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="25dp"
             android:background="@drawable/btn_style"
+            android:fontFamily="@font/tajawal"
             android:text="ارسل رمز التأكيد"
             android:textColor="@color/common_google_signin_btn_text_dark_default" />
 

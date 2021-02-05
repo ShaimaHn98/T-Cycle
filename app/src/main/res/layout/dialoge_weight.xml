@@ -9,12 +9,14 @@
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="32dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/colorAccent"
+        android:fontFamily="@font/tajawal"
         android:gravity="center"
         android:text="كم وزن نفايتك؟"
         android:textColor="@color/colorSecondry"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,20 +79,20 @@
             app:layout_constraintEnd_toStartOf="@+id/linearLayout5"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+            <EditText
                 android:id="@+id/txt_w"
                 android:layout_width="36dp"
-                android:layout_height="18dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@drawable/txtview_ph"
                 android:gravity="center"
-                android:textColor="@color/colorPrimaryDark"
-                tools:layout_conversion_absoluteHeight="44dp"
-                tools:layout_conversion_absoluteWidth="181dp" />
+                android:textColor="@color/colorPrimaryDark" />
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="27dp"
                 android:layout_height="18dp"
+                android:layout_gravity="center"
                 android:text="Kg"
                 android:textColor="@color/colorPrimaryDark" />
         </LinearLayout>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.t_cycle.ui.home.HomeFragment"
+        android:name="com.tcycle.tcycle.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
 
@@ -15,23 +15,30 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.example.t_cycle.ui.My_Recycling.My_Recycling_Fragment"
+        android:name="com.tcycle.tcycle.ui.My_Recycling.My_Recycling_Fragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_myresycling" />
 
     <fragment
         android:id="@+id/nav_slideshow"
-        android:name="com.example.t_cycle.ui.Notification.Notification_Fragment"
+        android:name="com.tcycle.tcycle.ui.Notification.Notification_Fragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_notification" />
     <fragment
         android:id="@+id/nav_store"
-        android:name="com.example.t_cycle.ui.store.Store_Fragment"
-        android:label="Store"
+        android:name="com.tcycle.tcycle.ui.store.Store_Fragment"
+        android:label="المتجر"
         tools:layout="@layout/store__fragmentt_fragment" />
     <fragment
         android:id="@+id/nav_wallet"
-        android:name="com.example.t_cycle.ui.wallet.WalletFragment"
-        android:label="Wallet"
+        android:name="com.tcycle.tcycle.ui.wallet.WalletFragment"
+        android:label="المحفظة"
         tools:layout="@layout/fragment_wallet2" />
+
+    <fragment
+        android:id="@+id/nav_log_out"
+        android:name="com.tcycle.tcycle.ui.emptyfragment"
+
+        />
+
 </navigation>

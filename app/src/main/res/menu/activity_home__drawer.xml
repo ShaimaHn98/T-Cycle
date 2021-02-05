@@ -8,6 +8,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home_black_24dp"
+
             android:title="الصفحة الرئيسة" />
         <item
             android:id="@+id/nav_slideshow"
@@ -18,7 +19,7 @@
             android:icon="@drawable/ic_restore_page_black_24dp"
             android:title="تدويراتي" />
         <item
-            android:id="@+id/nav_store"
+              android:id="@+id/nav_store"
             android:icon="@drawable/ic_store_black_24dp"
             android:title="متجر T_Cycle"/>
         <item
@@ -28,5 +29,6 @@
         <item android:id="@+id/nav_log_out"
             android:icon="@drawable/ic_exit_to_app_black_24dp"
             android:title="خروج"/>
+
     </group>
 </menu>

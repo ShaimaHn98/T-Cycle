@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.wallet.WalletFragment" >
+    tools:context="com.tcycle.tcycle.ui.wallet.WalletFragment" >
 
     <ImageView
         android:id="@+id/imageView8"
@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_style"
+            android:fontFamily="@font/tajawal"
             android:text="كم بمحفظتي ؟"
             android:textColor="@color/colorSecondry"
             android:visibility="visible" />
@@ -45,6 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
+            android:fontFamily="@font/tajawal"
             android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -54,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/btn_style"
+            android:fontFamily="@font/tajawal"
             android:text="اطلب مستحقاتي"
             android:textColor="@color/colorSecondry" />
 
@@ -61,7 +64,8 @@
             android:id="@+id/my_wallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:fontFamily="@font/tajawal" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

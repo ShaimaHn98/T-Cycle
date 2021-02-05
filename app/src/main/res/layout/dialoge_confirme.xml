@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -11,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:background="@color/colorPrimary"
+        android:fontFamily="@font/tajawal"
         android:gravity="center"
         android:text="تأكيد الطلب"
         android:textColor="@color/colorSecondry" />
@@ -49,6 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/tajawal"
                     android:layoutDirection="rtl"
                     android:paddingLeft="180dp"
                     android:textColor="@color/colorPrimaryDark"
@@ -59,6 +60,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/tajawal"
                     android:text="مجموع الوزن :"
                     android:textColor="@color/colorPrimaryDark" />
 
@@ -67,22 +69,42 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
                 android:orientation="horizontal">
 
-                <Spinner
-                    android:id="@+id/spinner-days"
-                    style="@style/Widget.AppCompat.Spinner.DropDown.ActionBar"
-                    android:layout_width="wrap_content"
+                <RadioGroup
+                    android:id="@+id/date_groupe"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/colorAccent"
-                    android:textDirection="rtl" />
+                    android:layoutDirection="rtl"
+                    android:textDirection="rtl">
+
+                    <RadioButton
+                        android:id="@+id/btn_wed"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:text="الأربعاء"
+                        android:textColor="@color/colorAccent"
+                        android:textDirection="rtl" />
+
+                    <RadioButton
+                        android:id="@+id/btn_sat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layoutDirection="rtl"
+                        android:text="السبت"
+                        android:textColor="@color/colorAccent"
+                        android:textDirection="rtl" />
+                </RadioGroup>
 
                 <TextView
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="اختر موعد طلبك "
+                    android:fontFamily="@font/tajawal"
+                    android:text="اختر موعد طلبك :   "
                     android:textColor="@color/colorAccent"
                     android:textDirection="rtl" />
 
@@ -99,6 +121,7 @@
                     android:layout_width="234dp"
                     android:layout_height="31dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/tajawal"
                     android:gravity="center"
                     android:paddingTop="5dp"
                     android:textColor="@color/colorPrimary"
@@ -108,10 +131,10 @@
                     android:id="@+id/btn_confirme_location"
                     android:layout_width="117dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/btn_style"
                     android:drawableLeft="@drawable/ic_location_on_black_24dp"
+                    android:fontFamily="@font/tajawal"
                     android:layoutDirection="rtl"
                     android:text="الموقع"
                     android:textColor="@color/common_google_signin_btn_text_dark_default"
