@@ -209,12 +209,12 @@ RadioButton btn_sa,btn_wed;
                             user_order.put("Total_waste", total_waste);
                             user_order.put("Latitude", lat);
                             user_order.put("Longitude", lon);
-                            user_order.put("weight of iron", inp_type_iron);
-                            user_order.put("weight of aluminium", inp_type_aluminium);
-                            user_order.put("weight of plastic", inp_type_plastic);
-                            user_order.put("weight of paper", inp_type_paper);
-                            user_order.put("weight of carton", inp_type_carton);
-                            user_order.put("weight of copper", inp_type_copper);
+                            user_order.put("weight_of_iron", inp_type_iron);
+                            user_order.put("weight_of_aluminium", inp_type_aluminium);
+                            user_order.put("weight_of_plastic", inp_type_plastic);
+                            user_order.put("weight_of_paper", inp_type_paper);
+                            user_order.put("weight_of_carton", inp_type_carton);
+                            user_order.put("weight_of_copper", inp_type_copper);
                             user_order.put("uid", uid);
                             user_order.put("date_order", date_order);
                             firestore.collection("User_Order").add(user_order).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
