@@ -84,7 +84,7 @@ Please follow the code of conduct outlined in the `CONTRIBUTING.md` file.
 This project is licensed under the MIT License - see the `LICENSE` file for details.
 
 ## Contact
-If you have any questions, issues, or suggestions, feel free to contact us at [support@recycleapp.com](mailto:support@recycleapp.com).
+If you have any questions, issues, or suggestions, feel free to contact us at [shaimahanaqtah98@gmail.com](mailto:shaimahanaqtah98@gmail.com).
 
 ---
 
